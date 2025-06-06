@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareBurkina - Collecte et Accompagnement pour la Réduction de la fracture Educative</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#4CAF50',secondary:'#FF7043'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .text-gradient {
+            background: linear-gradient(90deg, #FF7043 0%, #4CAF50 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://readdy.ai/api/search-image?query=African%20children%20in%20a%20classroom%20learning%20with%20computers%2C%20bright%20classroom%20with%20green%20plants%2C%20happy%20faces%2C%20educational%20environment%2C%20natural%20lighting%2C%20modern%20technology%20in%20rural%20setting%2C%20hope%20and%20future&width=1200&height=600&seq=1&orientation=landscape');
+            background-size: cover;
+            background-position: center;
+        }
+        .custom-checkbox {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #4CAF50;
+            border-radius: 4px;
+            position: relative;
+        }
+        .custom-checkbox:checked {
+            background-color: #4CAF50;
+        }
+        .custom-checkbox:checked::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 2px;
+            width: 6px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .custom-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .custom-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #4CAF50;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .impact-card {
+            transition: transform 0.3s ease;
+        }
+        .impact-card:hover {
+            transform: translateY(-10px);
+        }
+        .donation-option {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .donation-option:hover, .donation-option.active {
+            border-color: #4CAF50;
+            background-color: rgba(76, 175, 80, 0.05);
+        }
+        .leaf {
+            position: absolute;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-12 h-12 flex items-center justify-center relative" id="logo-container">
+                    <div class="w-10 h-10 bg-orange-400 rounded-lg flex items-center justify-center">
+                        <div class="w-8 h-8 bg-white rounded-md flex items-center justify-center">
+                            <div class="w-6 h-6 bg-primary rounded-sm"></div>
+                        </div>
+                    </div>
+                    <div class="leaf leaf-1 w-4 h-6 bg-green-400 rounded-full rotate-45 top-0 right-0"></div>
+                    <div class="leaf leaf-2 w-6 h-2 bg-yellow-400 rounded-full bottom-0"></div>
+                </div>
+                <div class="font-bold text-xl">
+                    <span class="text-orange-500">Care</span><span class="text-primary">Burkina</span>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#" class="text-gray-700 hover:text-primary font-medium transition-colors">Accueil</a>
+                <a href="#impact" class="text-gray-700 hover:text-primary font-medium transition-colors">Notre Impact</a>
+                <a href="#donation" class="text-gray-700 hover:text-primary font-medium transition-colors">Faire un Don</a>
+                <a href="#projects" class="text-gray-700 hover:text-primary font-medium transition-colors">Projets</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary font-medium transition-colors">Contact</a>
+            </nav>
+            
+            <div class="flex items-center gap-3">
+                <button class="hidden md:block bg-white text-primary border border-primary px-4 py-2 rounded-button font-medium hover:bg-primary hover:text-white transition-colors whitespace-nowrap">
+                    Se Connecter
+                </button>
+                <button class="bg-primary text-white px-4 py-2 rounded-button font-medium hover:bg-green-600 transition-colors whitespace-nowrap">
+                    Faire un Don
+                </button>
+                <button class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700" id="mobile-menu-button">
+                    <i class="ri-menu-line ri-lg"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white w-full py-4 px-4 shadow-lg" id="mobile-menu">
+            <div class="flex flex-col space-y-3">
+                <a href="#" class="text-gray-700 hover:text-primary font-medium py-2 transition-colors">Accueil</a>
+                <a href="#impact" class="text-gray-700 hover:text-primary font-medium py-2 transition-colors">Notre Impact</a>
+                <a href="#donation" class="text-gray-700 hover:text-primary font-medium py-2 transition-colors">Faire un Don</a>
+                <a href="#projects" class="text-gray-700 hover:text-primary font-medium py-2 transition-colors">Projets</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary font-medium py-2 transition-colors">Contact</a>
+                <button class="bg-white text-primary border border-primary px-4 py-2 rounded-button font-medium hover:bg-primary hover:text-white transition-colors whitespace-nowrap w-full">
+                    Se Connecter
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section min-h-screen flex items-center pt-20">
+        <div class="container mx-auto px-4 py-20 w-full">
+            <div class="max-w-3xl text-white" id="hero-content">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 opacity-0">Réduire la Fracture Numérique Éducative au Burkina Faso</h1>
+                <p class="text-xl mb-8 opacity-0">Nous collectons et redistribuons du matériel informatique aux écoles primaires défavorisées pour offrir un meilleur avenir aux enfants.</p>
+                <div class="flex flex-col sm:flex-row gap-4 opacity-0">
+                    <button class="bg-primary text-white px-6 py-3 rounded-button font-medium hover:bg-green-600 transition-colors whitespace-nowrap flex items-center justify-center">
+                        <i class="ri-heart-line mr-2"></i> Faire un Don
+                    </button>
+                    <button class="bg-white text-primary px-6 py-3 rounded-button font-medium hover:bg-gray-100 transition-colors whitespace-nowrap flex items-center justify-center">
+                        <i class="ri-user-add-line mr-2"></i> Devenir Membre
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notre Impact Section -->
+    <section id="impact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Notre <span class="text-primary">Impact</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Depuis notre création, nous avons pu faire une différence significative dans la vie de nombreux enfants au Burkina Faso grâce à votre soutien.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="impact-card bg-white p-8 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-school-line ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold mb-2 counter" data-target="42">0</h3>
+                    <p class="text-gray-600">Écoles Équipées</p>
+                </div>
+                
+                <div class="impact-card bg-white p-8 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-computer-line ri-2x text-secondary"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold mb-2 counter" data-target="875">0</h3>
+                    <p class="text-gray-600">Ordinateurs Distribués</p>
+                </div>
+                
+                <div class="impact-card bg-white p-8 rounded-lg shadow-lg text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-user-smile-line ri-2x text-blue-500"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold mb-2 counter" data-target="5280">0</h3>
+                    <p class="text-gray-600">Élèves Bénéficiaires</p>
+                </div>
+            </div>
+            
+            <div class="mt-20">
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Évolution de Notre Impact</h3>
+                    <div id="impact-chart" class="w-full h-80"></div>
+                </div>
+            </div>
+            
+            <div class="mt-20">
+                <h3 class="text-2xl font-bold mb-8 text-center">Témoignages</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-start mb-4">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4">
+                                MB
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Moussa Bamba</h4>
+                                <p class="text-gray-600 text-sm">Directeur d'école à Ouagadougou</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">"Grâce à CareBurkina, nos élèves ont désormais accès à des ordinateurs pour la première fois. Cela a complètement transformé notre façon d'enseigner et a ouvert de nouvelles perspectives pour nos enfants."</p>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="flex items-start mb-4">
+                            <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center text-white font-bold mr-4">
+                                FK
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Fatima Konaté</h4>
+                                <p class="text-gray-600 text-sm">Enseignante à Bobo-Dioulasso</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">"L'arrivée des ordinateurs dans notre école a suscité un enthousiasme incroyable chez les élèves. Leur assiduité s'est améliorée et ils sont plus motivés que jamais à apprendre. Merci CareBurkina!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faire un Don Section -->
+    <section id="donation" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Faire un <span class="text-primary">Don</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Votre contribution, qu'elle soit en matériel informatique ou en espèces, permet de réduire la fracture numérique et d'offrir un meilleur avenir aux enfants du Burkina Faso.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="donation-option bg-white p-8 rounded-lg shadow-md" id="material-donation">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="ri-computer-line ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Don de Matériel Informatique</h3>
+                    <p class="text-gray-600 mb-6">Donnez une seconde vie à votre matériel informatique usagé en le mettant à disposition des écoles qui en ont besoin.</p>
+                    
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="material-type">Type de Matériel</label>
+                            <div class="relative">
+                                <select id="material-type" class="w-full border border-gray-300 rounded p-3 pr-8 appearance-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <option value="">Sélectionnez un type</option>
+                                    <option value="computer">Ordinateur</option>
+                                    <option value="laptop">Ordinateur Portable</option>
+                                    <option value="tablet">Tablette</option>
+                                    <option value="printer">Imprimante</option>
+                                    <option value="other">Autre</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                    <i class="ri-arrow-down-s-line text-gray-400"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="material-quantity">Quantité</label>
+                            <input type="number" id="material-quantity" class="w-full border border-gray-300 rounded p-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" min="1" value="1">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="material-condition">État</label>
+                            <div class="relative">
+                                <select id="material-condition" class="w-full border border-gray-300 rounded p-3 pr-8 appearance-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                    <option value="">Sélectionnez l'état</option>
+                                    <option value="new">Neuf</option>
+                                    <option value="excellent">Excellent</option>
+                                    <option value="good">Bon</option>
+                                    <option value="fair">Correct</option>
+                                    <option value="needs-repair">Nécessite réparation</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                    <i class="ri-arrow-down-s-line text-gray-400"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <input type="checkbox" id="material-pickup" class="custom-checkbox mr-2 mt-1">
+                            <label for="material-pickup" class="text-gray-700">J'ai besoin d'un service de collecte</label>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary text-white py-3 rounded-button font-medium hover:bg-green-600 transition-colors whitespace-nowrap">Faire un Don de Matériel</button>
+                    </form>
+                </div>
+                
+                <div class="donation-option bg-white p-8 rounded-lg shadow-md" id="money-donation">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="ri-money-cny-circle-line ri-2x text-secondary"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Don en Espèces (FCFA)</h3>
+                    <p class="text-gray-600 mb-6">Votre contribution financière nous permet d'acheter du matériel, d'assurer la logistique et de former les enseignants.</p>
+                    
+                    <form class="space-y-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Montant du Don</label>
+                            <div class="grid grid-cols-3 gap-2 mb-4">
+                                <button type="button" class="amount-btn border border-gray-300 rounded p-3 text-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent whitespace-nowrap">5 000 FCFA</button>
+                                <button type="button" class="amount-btn border border-gray-300 rounded p-3 text-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent whitespace-nowrap">10 000 FCFA</button>
+                                <button type="button" class="amount-btn border border-gray-300 rounded p-3 text-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent whitespace-nowrap">25 000 FCFA</button>
+                            </div>
+                            <div class="relative">
+                                <input type="number" id="custom-amount" class="w-full border border-gray-300 rounded p-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Montant personnalisé">
+                                <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+                                    <span class="text-gray-500">FCFA</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 mb-2">Fréquence</label>
+                            <div class="flex space-x-4">
+                                <div class="flex items-center">
+                                    <input type="radio" id="one-time" name="frequency" class="hidden" checked>
+                                    <label for="one-time" class="flex items-center cursor-pointer">
+                                        <span class="w-5 h-5 inline-block mr-2 rounded-full border border-gray-400 flex-shrink-0"></span>
+                                        <span class="text-gray-700">Unique</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" id="monthly" name="frequency" class="hidden">
+                                    <label for="monthly" class="flex items-center cursor-pointer">
+                                        <span class="w-5 h-5 inline-block mr-2 rounded-full border border-gray-400 flex-shrink-0"></span>
+                                        <span class="text-gray-700">Mensuel</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" id="yearly" name="frequency" class="hidden">
+                                    <label for="yearly" class="flex items-center cursor-pointer">
+                                        <span class="w-5 h-5 inline-block mr-2 rounded-full border border-gray-400 flex-shrink-0"></span>
+                                        <span class="text-gray-700">Annuel</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 mb-2">Méthode de Paiement</label>
+                            <div class="grid grid-cols-2 gap-2 mb-4">
+                                <button type="button" class="payment-method-btn border border-gray-300 rounded p-3 text-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent flex items-center justify-center whitespace-nowrap">
+                                    <i class="ri-bank-card-line mr-2"></i> Carte Bancaire
+                                </button>
+                                <button type="button" class="payment-method-btn border border-gray-300 rounded p-3 text-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent flex items-center justify-center whitespace-nowrap">
+                                    <i class="ri-bank-line mr-2"></i> Virement
+                                </button>
+                                <button type="button" class="payment-method-btn border border-gray-300 rounded p-3 text-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent flex items-center justify-center whitespace-nowrap">
+                                    <i class="ri-smartphone-line mr-2"></i> Mobile Money
+                                </button>
+                                <button type="button" class="payment-method-btn border border-gray-300 rounded p-3 text-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent flex items-center justify-center whitespace-nowrap">
+                                    <i class="ri-paypal-line mr-2"></i> PayPal
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary text-white py-3 rounded-button font-medium hover:bg-green-600 transition-colors whitespace-nowrap">Faire un Don</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projets Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Nos <span class="text-primary">Projets</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Découvrez les écoles que nous avons équipées et les projets en cours pour réduire la fracture numérique éducative au Burkina Faso.</p>
+            </div>
+            
+            <div class="mb-12">
+                <div class="bg-white p-6 rounded-lg shadow-lg overflow-hidden">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Carte des Écoles Bénéficiaires</h3>
+                    <div class="w-full h-96 rounded-lg overflow-hidden" style="background-image: url('https://public.readdy.ai/gen_page/map_placeholder_1280x720.png'); background-size: cover; background-position: center;"></div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gray-200" style="background-image: url('https://readdy.ai/api/search-image?query=African%20primary%20school%20classroom%20with%20students%20using%20computers%2C%20educational%20environment%2C%20natural%20lighting%2C%20happy%20children%20learning%20with%20technology&width=400&height=200&seq=2&orientation=landscape'); background-size: cover; background-position: center;"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">École Primaire de Tanghin</h3>
+                        <p class="text-gray-600 mb-4">Ouagadougou</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm text-gray-500">Équipée en Avril 2025</span>
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Terminé</span>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-700">Ordinateurs distribués</span>
+                                <span class="text-sm font-medium text-gray-700">25/25</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-white text-primary border border-primary py-2 rounded-button font-medium hover:bg-primary hover:text-white transition-colors whitespace-nowrap">Voir les détails</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gray-200" style="background-image: url('https://readdy.ai/api/search-image?query=African%20teacher%20showing%20students%20how%20to%20use%20a%20computer%2C%20classroom%20setting%2C%20educational%20environment%2C%20technology%20learning&width=400&height=200&seq=3&orientation=landscape'); background-size: cover; background-position: center;"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">École Primaire de Dassasgho</h3>
+                        <p class="text-gray-600 mb-4">Ouagadougou</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm text-gray-500">En cours depuis Mars 2025</span>
+                            <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">En cours</span>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-700">Ordinateurs distribués</span>
+                                <span class="text-sm font-medium text-gray-700">15/30</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 50%"></div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-white text-primary border border-primary py-2 rounded-button font-medium hover:bg-primary hover:text-white transition-colors whitespace-nowrap">Voir les détails</button>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <div class="h-48 bg-gray-200" style="background-image: url('https://readdy.ai/api/search-image?query=Rural%20African%20school%20building%2C%20simple%20classroom%2C%20educational%20environment%2C%20natural%20lighting%2C%20school%20yard%20with%20trees&width=400&height=200&seq=4&orientation=landscape'); background-size: cover; background-position: center;"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">École Primaire de Koudougou</h3>
+                        <p class="text-gray-600 mb-4">Koudougou</p>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-sm text-gray-500">Planifié pour Juin 2025</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">À venir</span>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium text-gray-700">Collecte de fonds</span>
+                                <span class="text-sm font-medium text-gray-700">450K/1.2M FCFA</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                <div class="bg-primary h-2 rounded-full" style="width: 37.5%"></div>
+                            </div>
+                        </div>
+                        <button class="w-full bg-white text-primary border border-primary py-2 rounded-button font-medium hover:bg-primary hover:text-white transition-colors whitespace-nowrap">Contribuer</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="bg-white text-primary border border-primary px-6 py-3 rounded-button font-medium hover:bg-primary hover:text-white transition-colors whitespace-nowrap">
+                    Voir tous les projets
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Devenir Membre Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8">
+                        <h2 class="text-3xl font-bold mb-4">Devenir <span class="text-primary">Membre</span></h2>
+                        <p class="text-gray-600 mb-6">Rejoignez notre communauté et participez activement à nos projets pour réduire la fracture numérique éducative au Burkina Faso.</p>
+                        
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-gray-700 mb-2" for="member-name">Nom Complet</label>
+                                <input type="text" id="member-name" class="w-full border border-gray-300 rounded p-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Votre nom complet">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 mb-2" for="member-email">Email</label>
+                                <input type="email" id="member-email" class="w-full border border-gray-300 rounded p-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="votre.email@exemple.com">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 mb-2" for="member-phone">Téléphone</label>
+                                <input type="tel" id="member-phone" class="w-full border border-gray-300 rounded p-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="+226 XX XX XX XX">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 mb-2" for="member-type">Type d'Adhésion</label>
+                                <div class="relative">
+                                    <select id="member-type" class="w-full border border-gray-300 rounded p-3 pr-8 appearance-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                        <option value="">Sélectionnez un type</option>
+                                        <option value="regular">Membre Régulier (5 000 FCFA/an)</option>
+                                        <option value="supporting">Membre Bienfaiteur (25 000 FCFA/an)</option>
+                                        <option value="corporate">Membre Entreprise (100 000 FCFA/an)</option>
+                                        <option value="volunteer">Bénévole (Gratuit)</option>
+                                    </select>
+                                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                                        <i class="ri-arrow-down-s-line text-gray-400"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <input type="checkbox" id="member-terms" class="custom-checkbox mr-2 mt-1">
+                                <label for="member-terms" class="text-gray-700">J'accepte les <a href="#" class="text-primary hover:underline">conditions d'utilisation</a> et la <a href="#" class="text-primary hover:underline">politique de confidentialité</a></label>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-primary text-white py-3 rounded-button font-medium hover:bg-green-600 transition-colors whitespace-nowrap">Devenir Membre</button>
+                        </form>
+                    </div>
+                    
+                    <div class="md:w-1/2 bg-primary flex items-center justify-center p-8">
+                        <div class="text-white text-center">
+                            <div class="w-20 h-20 bg-white bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="ri-team-line ri-3x text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-4">Avantages des Membres</h3>
+                            <ul class="space-y-3 text-left">
+                                <li class="flex items-start">
+                                    <i class="ri-check-line ri-lg mr-2 mt-1"></i>
+                                    <span>Participation aux assemblées générales</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="ri-check-line ri-lg mr-2 mt-1"></i>
+                                    <span>Implication dans les décisions stratégiques</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="ri-check-line ri-lg mr-2 mt-1"></i>
+                                    <span>Participation aux distributions de matériel</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="ri-check-line ri-lg mr-2 mt-1"></i>
+                                    <span>Accès à notre réseau de partenaires</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="ri-check-line ri-lg mr-2 mt-1"></i>
+                                    <span>Reçu fiscal pour les dons et cotisations</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Contactez <span class="text-primary">Nous</span></h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Vous avez des questions ou souhaitez en savoir plus sur nos activités ? N'hésitez pas à nous contacter, nous serons ravis de vous répondre.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-map-pin-line ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Adresse</h3>
+                    <p class="text-gray-600">Avenue de la Liberté, Secteur 4<br>Ouagadougou, Burkina Faso</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-phone-line ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Téléphone</h3>
+                    <p class="text-gray-600">+226 70 XX XX XX<br>+226 76 XX XX XX</p>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="ri-mail-line ri-2x text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Email</h3>
+                    <p class="text-gray-600">contact@careburkina.org<br>info@careburkina.org</p>
+                </div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto mt-16">
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Envoyez-nous un Message</h3>
+                    
+                    <form class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-gray-700 mb-2" for="contact-name">Nom Complet</label>
+                                <input type="text" id="contact-name" class="w-full border border-gray-300 rounded p-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Votre nom complet">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 mb-2" for="contact-email">Email</label>
+                                <input type="email" id="contact-email" class="w-full border border-gray-300 rounded p-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="votre.email@exemple.com">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="contact-subject">Sujet</label>
+                            <input type="text" id="contact-subject" class="w-full border border-gray-300 rounded p-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Sujet de votre message">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="contact-message">Message</label>
+                            <textarea id="contact-message" rows="5" class="w-full border border-gray-300 rounded p-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Votre message"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="bg-primary text-white px-6 py-3 rounded-button font-medium hover:bg-green-600 transition-colors whitespace-nowrap">Envoyer le Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-16 bg-primary">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center text-white">
+                <h2 class="text-3xl font-bold mb-4">Restez Informés</h2>
+                <p class="mb-8">Abonnez-vous à notre newsletter pour recevoir les dernières nouvelles sur nos projets et nos activités.</p>
+                
+                <form class="flex flex-col sm:flex-row gap-4">
+                    <input type="email" class="flex-grow border-none rounded p-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-yellow-400" placeholder="Votre adresse email">
+                    <button type="submit" class="bg-secondary text-white px-6 py-3 rounded-button font-medium hover:bg-orange-500 transition-colors whitespace-nowrap">S'abonner</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-10 h-10 flex items-center justify-center relative">
+                            <div class="w-8 h-8 bg-orange-400 rounded-lg flex items-center justify-center">
+                                <div class="w-6 h-6 bg-white rounded-md flex items-center justify-center">
+                                    <div class="w-4 h-4 bg-primary rounded-sm"></div>
+                                </div>
+                            </div>
+                            <div class="leaf leaf-1 w-3 h-4 bg-green-400 rounded-full rotate-45 top-0 right-0"></div>
+                            <div class="leaf leaf-2 w-4 h-1.5 bg-yellow-400 rounded-full bottom-0"></div>
+                        </div>
+                        <div class="font-bold text-lg">
+                            <span class="text-orange-400">Care</span><span class="text-green-400">Burkina</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-4">Collecte et Accompagnement pour la Réduction de la fracture Educative</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="ri-twitter-x-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="ri-instagram-fill"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="ri-linkedin-fill"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Liens Rapides</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Accueil</a></li>
+                        <li><a href="#impact" class="text-gray-400 hover:text-white transition-colors">Notre Impact</a></li>
+                        <li><a href="#donation" class="text-gray-400 hover:text-white transition-colors">Faire un Don</a></li>
+                        <li><a href="#projects" class="text-gray-400 hover:text-white transition-colors">Projets</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Nos Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Collecte de Matériel</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Distribution aux Écoles</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Formation des Enseignants</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Maintenance Informatique</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Sensibilisation Numérique</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Nous Contacter</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="ri-map-pin-line mr-2 mt-1"></i>
+                            <span class="text-gray-400">Avenue de la Liberté, Secteur 4<br>Ouagadougou, Burkina Faso</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ri-phone-line mr-2 mt-1"></i>
+                            <span class="text-gray-400">+226 70 XX XX XX</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="ri-mail-line mr-2 mt-1"></i>
+                            <span class="text-gray-400">contact@careburkina.org</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-gray-700 text-center text-gray-400 text-sm">
+                <p>&copy; 2025 CareBurkina. Tous droits réservés.</p>
+                <div class="flex justify-center space-x-4 mt-4">
+                    <a href="#" class="hover:text-white transition-colors">Mentions Légales</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white transition-colors">Politique de Confidentialité</a>
+                    <span>|</span>
+                    <a href="#" class="hover:text-white transition-colors">Conditions d'Utilisation</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    
+    <script id="mobile-menu-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+        });
+    </script>
+    
+    <script id="logo-animation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            gsap.to(".leaf-1", {
+                rotation: 10,
+                y: -5,
+                opacity: 1,
+                duration: 1,
+                ease: "power2.out"
+            });
+            
+            gsap.to(".leaf-2", {
+                rotation: -5,
+                opacity: 1,
+                duration: 1,
+                delay: 0.3,
+                ease: "power2.out"
+            });
+        });
+    </script>
+    
+    <script id="hero-animation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroContent = document.querySelector('#hero-content');
+            const heroElements = heroContent.children;
+            
+            gsap.fromTo(heroElements[0], 
+                { y: 50, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 1, ease: "power3.out" }
+            );
+            
+            gsap.fromTo(heroElements[1], 
+                { y: 50, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 1, delay: 0.3, ease: "power3.out" }
+            );
+            
+            gsap.fromTo(heroElements[2], 
+                { y: 50, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 1, delay: 0.6, ease: "power3.out" }
+            );
+        });
+    </script>
+    
+    <script id="counter-animation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const counters = document.querySelectorAll('.counter');
+            
+            const animateCounter = (counter, target) => {
+                let count = 0;
+                const speed = 2000 / target; // Adjust speed based on target value
+                
+                const updateCount = () => {
+                    const increment = target / (2000 / 16); // Smooth increment based on 60fps
+                    
+                    if (count < target) {
+                        count += increment;
+                        counter.innerText = Math.floor(count);
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                
+                updateCount();
+            };
+            
+            const observerOptions = {
+                threshold: 0.5
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        animateCounter(counter, target);
+                        observer.unobserve(counter);
+                    }
+                });
+            }, observerOptions);
+            
+            counters.forEach(counter => {
+                observer.observe(counter);
+            });
+        });
+    </script>
+    
+    <script id="impact-chart-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const chartDom = document.getElementById('impact-chart');
+            const myChart = echarts.init(chartDom);
+            
+            const option = {
+                animation: false,
+                tooltip: {
+                    trigger: 'axis',
+                    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                    textStyle: {
+                        color: '#1f2937'
+                    }
+                },
+                legend: {
+                    data: ['Ordinateurs Distribués', 'Écoles Équipées', 'Élèves Bénéficiaires'],
+                    textStyle: {
+                        color: '#1f2937'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['2022', '2023', '2024', '2025'],
+                    axisLine: {
+                        lineStyle: {
+                            color: '#1f2937'
+                        }
+                    }
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLine: {
+                        lineStyle: {
+                            color: '#1f2937'
+                        }
+                    },
+                    splitLine: {
+                        lineStyle: {
+                            color: 'rgba(31, 41, 55, 0.1)'
+                        }
+                    }
+                },
+                series: [
+                    {
+                        name: 'Ordinateurs Distribués',
+                        type: 'line',
+                        stack: 'Total',
+                        smooth: true,
+                        lineStyle: {
+                            width: 3,
+                            color: 'rgba(87, 181, 231, 1)'
+                        },
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0,
+                                    color: 'rgba(87, 181, 231, 0.3)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba(87, 181, 231, 0.1)'
+                                }]
+                            }
+                        },
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        showSymbol: false,
+                        data: [120, 280, 500, 875]
+                    },
+                    {
+                        name: 'Écoles Équipées',
+                        type: 'line',
+                        stack: 'Total',
+                        smooth: true,
+                        lineStyle: {
+                            width: 3,
+                            color: 'rgba(141, 211, 199, 1)'
+                        },
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0,
+                                    color: 'rgba(141, 211, 199, 0.3)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba(141, 211, 199, 0.1)'
+                                }]
+                            }
+                        },
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        showSymbol: false,
+                        data: [8, 18, 30, 42]
+                    },
+                    {
+                        name: 'Élèves Bénéficiaires',
+                        type: 'line',
+                        stack: 'Total',
+                        smooth: true,
+                        lineStyle: {
+                            width: 3,
+                            color: 'rgba(251, 191, 114, 1)'
+                        },
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0,
+                                    color: 'rgba(251, 191, 114, 0.3)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba(251, 191, 114, 0.1)'
+                                }]
+                            }
+                        },
+                        emphasis: {
+                            focus: 'series'
+                        },
+                        showSymbol: false,
+                        data: [800, 1800, 3200, 5280]
+                    }
+                ]
+            };
+            
+            myChart.setOption(option);
+            
+            window.addEventListener('resize', function() {
+                myChart.resize();
+            });
+        });
+    </script>
+    
+    <script id="donation-form-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Amount buttons
+            const amountBtns = document.querySelectorAll('.amount-btn');
+            const customAmount = document.getElementById('custom-amount');
+            
+            amountBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    amountBtns.forEach(b => b.classList.remove('bg-primary', 'text-white', 'border-primary'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('bg-primary', 'text-white', 'border-primary');
+                    
+                    // Clear custom amount
+                    customAmount.value = '';
+                });
+            });
+            
+            customAmount.addEventListener('focus', function() {
+                // Remove active class from all buttons when custom amount is focused
+                amountBtns.forEach(b => b.classList.remove('bg-primary', 'text-white', 'border-primary'));
+            });
+            
+            // Payment method buttons
+            const paymentMethodBtns = document.querySelectorAll('.payment-method-btn');
+            
+            paymentMethodBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    paymentMethodBtns.forEach(b => b.classList.remove('bg-primary', 'text-white', 'border-primary'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('bg-primary', 'text-white', 'border-primary');
+                });
+            });
+            
+            // Donation options
+            const donationOptions = document.querySelectorAll('.donation-option');
+            
+            donationOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove active class from all options
+                    donationOptions.forEach(o => o.classList.remove('active'));
+                    
+                    // Add active class to clicked option
+                    this.classList.add('active');
+                });
+            });
+            
+            // Radio buttons
+            const radioInputs = document.querySelectorAll('input[type="radio"]');
+            
+            radioInputs.forEach(input => {
+                input.addEventListener('change', function() {
+                    // Reset all radio button styles
+                    document.querySelectorAll(`label[for^="${this.name}"]`).forEach(label => {
+                        const span = label.querySelector('span:first-child');
+                        span.classList.remove('bg-primary');
+                        span.classList.remove('border-primary');
+                    });
+                    
+                    // Style the checked radio button
+                    if (this.checked) {
+                        const label = document.querySelector(`label[for="${this.id}"]`);
+                        const span = label.querySelector('span:first-child');
+                        span.classList.add('bg-primary');
+                        span.classList.add('border-primary');
+                    }
+                });
+                
+                // Initialize checked state
+                if (input.checked) {
+                    const label = document.querySelector(`label[for="${input.id}"]`);
+                    const span = label.querySelector('span:first-child');
+                    span.classList.add('bg-primary');
+                    span.classList.add('border-primary');
+                }
+            });
+        });
+    </script>
+    
+    <script id="scroll-animation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Impact cards animation
+            gsap.utils.toArray('.impact-card').forEach((card, i) => {
+                gsap.fromTo(card, 
+                    { y: 50, opacity: 0 }, 
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.8,
+                        delay: i * 0.2,
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 80%",
+                            toggleActions: "play none none none"
+                        }
+                    }
+                );
+            });
+            
+            // Project cards animation
+            gsap.utils.toArray('#projects .bg-white').forEach((card, i) => {
+                gsap.fromTo(card, 
+                    { y: 50, opacity: 0 }, 
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.8,
+                        delay: i * 0.2,
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 80%",
+                            toggleActions: "play none none none"
+                        }
+                    }
+                );
+            });
+            
+            // Contact info animation
+            gsap.utils.toArray('#contact .bg-white').forEach((card, i) => {
+                gsap.fromTo(card, 
+                    { y: 50, opacity: 0 }, 
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.8,
+                        delay: i * 0.2,
+                        scrollTrigger: {
+                            trigger: card,
+                            start: "top 80%",
+                            toggleActions: "play none none none"
+                        }
+                    }
+                );
+            });
+        });
+    </script>
+</body>
+</html>
